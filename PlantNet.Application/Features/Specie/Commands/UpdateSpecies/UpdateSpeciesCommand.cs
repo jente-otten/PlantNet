@@ -14,8 +14,6 @@ namespace PlantNet.Application.Features.Specie.Commands.UpdateSpecies
         public string Name { get; set; }
         public int MinTemp { get; set; }
         public int MaxTemp { get; set; }
-        public int MinHumidity { get; set; }
-        public int MaxHumidity { get; set; }
         public LightLevel LightLevel { get; set; }
         public Family PlantType { get; set; }
     }

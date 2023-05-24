@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using PlantNet.Application.Contracts.Persistence;
 using PlantNet.Domain.Entities;
@@ -24,6 +25,12 @@ namespace PlantNet.Application.Features.Specie.Commands.CreateSpecies
         public async Task<int> Handle(CreateSpeciesCommand request, CancellationToken cancellationToken)
         {
             var species = _mapper.Map<Species>(request);
+            var validator = new CreateSpeciesCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+            {
+                throw new Exceptions.ValidationException(validationResult);
+            }
             species = await _speciesRepository.AddAsync(species);
             return species.Id;
 
