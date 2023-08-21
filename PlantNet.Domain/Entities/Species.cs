@@ -10,7 +10,7 @@ namespace PlantNet.Domain.Entities
     public class Species : AuditableEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public int MinTemp { get; set; }
         public int MaxTemp { get; set; }
         public LightLevel LightLevel { get; set; }
